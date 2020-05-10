@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <!--Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Project CC GCS</title>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+ <style>
+body {
+  background-image: url('background1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+</style>
+  <div class = "container">
+ 
+  <body>
+   
+   
+    <h3>
+    <small class="text-muted">Cloud Computing</small>
+    Project
+    </h3>
+    <h4>
+      Integration of
+      <small class ="text-muted"> Google Calendar API & People API </small>
+    </h4>
+    <h6>These calendar & contact list belong to: <mark id="h5"></mark></h6>
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+    <h3 class="detail">Contact list</h3>
+    <p class="apidetail"> Integrated with Person API from Google</p>
+    <h5>Total number of available contacts:<mark id="contactnumber"></mark> </h5>
+    
+    <table id="tabelContacte" class="table">
+        <thead class="table table-bordered">
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Phone Number</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+    </table>
+    
+    <h3 class="detail">Calendar Events</h3>
+    <p class="apidetail"> Integrated with Calendar API from Google</p>
+    
+    
+    <table id="tabel" class="table">
+        <thead class="thead-dark">
+      <tr>
+        <th>Event Name</th>
+        <th>Date Created</th>
+        <th>Creator</th>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Status</th>
+        <th>Event Link</th>
+      </tr>
+      </thead>
+    </table>
+    
+    <a id ="link">  </a>
+    
+    <script type="text/javascript">
+      // Client ID and API key from the Developer Console
+      var CLIENT_ID = '392338611851-mdkupajl9njdpfvvgv7q5v85nelq35pg.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyDoV2S5z-5YXDKtrURunY0XpRwiKytx-N4';
+
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+
+
+    // Second API
+     // Client ID and API key from the Developer Console
+      var CLIENT_ID1 = '392338611851-069rdkebjo635ca181ufr881pvcpmh2h.apps.googleusercontent.com';
+      var API_KEY1 = 'AIzaSyDvBFEdc8CFMrrtExzjWlaxsr_0ShhdGFM';
+
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS1 = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES1 = "https://www.googleapis.com/auth/contacts.readonly";
+    //End Second API
+
+      var authorizeButton = document.getElementById('authorize_button');
+      var signoutButton = document.getElementById('signout_button');
+
+      /**
+       *  On load, called to load the auth2 library and API client library.
+       */
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
+
+
+      //SECOND API
+      
+      function handleClientLoad1() {
+        gapi.load('client:auth2', initClient1);
+      }
+      /**
+       *  Initializes the API client library and sets up sign-in state
+       *  listeners.
+       */
+      function initClient() {
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        }).then(function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        }, function(error) {
+          appendPre(JSON.stringify(error, null, 2));
+        });
+      }
+      
+      
+      
+      //SECOND API
+      
+      function initClient1() {
+        gapi.client.init({
+          apiKey: API_KEY1,
+          clientId: CLIENT_ID1,
+          discoveryDocs: DISCOVERY_DOCS1,
+          scope: SCOPES1
+        }).then(function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        }, function(error) {
+          appendPre(JSON.stringify(error, null, 2));
+        });
+      }
+      
+      
+      
+      
+
+      /**
+       *  Called when the signed in status changes, to update the UI
+       *  appropriately. After a sign-in, the API is called.
+       */
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+          listUpcomingEvents();
+          listConnectionNames();
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+          
+        }
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node. Used to display the results of the API call.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('content');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+      /**
+       * Print the summary and start datetime/date of the next ten events in
+       * the authorized user's calendar. If no events are found an
+       * appropriate message is printed.
+       */
+     
+      function listUpcomingEvents() {
+        gapi.client.calendar.events.list({
+          'calendarId': 'primary',
+          'timeMin': (new Date()).toISOString(),
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+        }).then(function(response) {
+          console.log(response);
+          var events = response.result.items;
+          
+          
+          if (events.length > 0) {
+            for (i = 0; i < events.length; i++) {
+              var event = events[i];
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+              $('#tabel tr:last').after('<tr><td><b>'+event.summary+'</b></td><td>'+event.created+'</td><td>'+event.creator.email+'</td><td>'+event.start.dateTime+'</td><td>'+event.end.dateTime+'</td><td>'+event.status+'</td><td><a href="'+event.htmlLink+'">link</a></td></tr>');
+              $("#h1").html('Calendarul utilizatorului cu adresa: ' + event.creator.email);
+              $("#link").attr("href", event.htmlLink);
+              $("#h5").html(event.creator.email);
+              
+              
+            }
+          } else {
+            appendPre('No upcoming events found.');
+          }
+        });
+      }
+      function startest(){
+        handleClientLoad1();
+        handleClientLoad();
+      }
+      
+      function listConnectionNames() {
+        gapi.client.people.people.connections.list({
+           'resourceName': 'people/me',
+           'pageSize': 10,
+           'personFields': 'names,emailAddresses,phoneNumbers',
+         }).then(function(response) {
+           console.log(response);
+           var connections = response.result.connections;
+            if (connections.length > 0) {
+             for (i = 0; i < connections.length; i++) {
+               var person = connections[i];
+               if (person.names && person.names.length > 0) {
+                 //appendPre(person.names[0].displayName);
+               } 
+                
+               else {
+                 appendPre("No display name found for connection.");
+               }
+               
+               $('#tabelContacte tr:last').after('<tr><td>'+(i+1)+'</td><td><b>'+person.names[0].givenName+'</b></td><td>'+person.phoneNumbers[0].canonicalForm+'</td><td>'+person.phoneNumbers[0].type+'</td></tr>');
+               $("#contactnumber").html(response.result.totalPeople);
+               
+             }
+           } else {
+             appendPre('No connections found.');
+           }
+         });
+      }
+
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};startest()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+    </body>
+  </div>
+</html>

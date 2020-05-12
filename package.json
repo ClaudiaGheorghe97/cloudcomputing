@@ -13,5 +13,13 @@
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClaudiaGheorghe97/cloudcomputing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ClaudiaGheorghe97/cloudcomputing/issues"
+  },
+  "homepage": "https://github.com/ClaudiaGheorghe97/cloudcomputing#readme"
 }

@@ -13,6 +13,9 @@ Acest API permite afișarea, crearea și modificarea evenimentelor din calendar,
 •	People API
 People API este folosit pentru a afișa și manageria lista de contacte a userului autentificat și de a-i retrage informațiile profilului pentru userul autentificat, cât și a contactelor acestuia. 
 
+![GitHub Logo](/images/background.png)
+Format: ![Alt Text](url)
+
 
 # Flux de date
 Interacțiunile de tip API includ o aplicație cloud care comunică cu un server, serverele comunicând între  ele, iar aplicațiile interacționează cu sistemele de operare. Astfel, protoculul de comunicare al unui API este de a permte dezvoltatorilor să construiască, să se conecteze și să integreze aplicații rapid. 

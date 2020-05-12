@@ -8,9 +8,13 @@ Pe platforma Cloud 9 a AWS am realizat un server care să susțină aplicația, 
 
 # Descriere API
 Cele 2 API-uri au fost amândouă integrate prin Google prin intermediul unui API Key. 
-**Google Calendar**
+
+
+###**Google Calendar**
 Acest API permite afișarea, crearea și modificarea evenimentelor din calendar, dar funcționează cu multe alte elemente. Acest API poate fi integrat cu o varietate largă de limbaje de programare (Java, PHP, .NET, JavaScript, NodeJs, Ruby, Python, dar și Andorid și iOS).
- **People API**
+ 
+ 
+ ###**People API**
 People API este folosit pentru a afișa și manageria lista de contacte a userului autentificat și de a-i retrage informațiile profilului pentru userul autentificat, cât și a contactelor acestuia. 
 
 
@@ -40,20 +44,20 @@ Pentru folosirea acestor API s-a folosit integrarea prin intermediul Oauth și s
 
 ![URI Authentication](/images/URI.png)
 
-##Capturi de ecran aplicatie
+## Capturi de ecran aplicatie
 
 Ecranul înainte de a se face autentificarea prin Google: 
 ![FirstScreen](/images/FirstScreen.png)
 
-##Selectarea unui cont Google:
+## Selectarea unui cont Google:
 ![SecondScreen](/images/SecondScreen.png)
 
-##Tragerea datelor în urma autentificării și popularea tabelelor: 
-####Tabelul care foloseste People API
+## Tragerea datelor în urma autentificării și popularea tabelelor: 
+#### Tabelul care foloseste People API
 
 ![ThirdsScreen](/images/ThirdScreen.png)
 
-####Tabelul care folosește Calendar API
+#### Tabelul care folosește Calendar API
 
 ![FourthScreen](/images/FourthScreen.png)
 

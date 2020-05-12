@@ -10,11 +10,11 @@ Pe platforma Cloud 9 a AWS am realizat un server care să susțină aplicația, 
 Cele 2 API-uri au fost amândouă integrate prin Google prin intermediul unui API Key. 
 
 
-###**Google Calendar**
+**Google Calendar**
 Acest API permite afișarea, crearea și modificarea evenimentelor din calendar, dar funcționează cu multe alte elemente. Acest API poate fi integrat cu o varietate largă de limbaje de programare (Java, PHP, .NET, JavaScript, NodeJs, Ruby, Python, dar și Andorid și iOS).
  
  
- ###**People API**
+**People API**
 People API este folosit pentru a afișa și manageria lista de contacte a userului autentificat și de a-i retrage informațiile profilului pentru userul autentificat, cât și a contactelor acestuia. 
 
 
@@ -61,7 +61,7 @@ Ecranul înainte de a se face autentificarea prin Google:
 
 ![FourthScreen](/images/FourthScreen.png)
 
-*Erori întâmpinate:*
+## *Erori întâmpinate:*
 
 ![Eroare](/images/Eroare.png)
 Această eroare a apărut datorită faptului că nu am autorizat domeniul de AWS, astfel neputând ca API-ul să comunice cu serverul. După ce a fost realizată autorizarea, a fost necesar să șterg cache & cookies, ca, mai apoi, să funcționeze API-ul. 

@@ -51,7 +51,7 @@ Ecranul înainte de a se face autentificarea prin Google:
 ##Tragerea datelor în urma autentificării și popularea tabelelor: 
 ####Tabelul care foloseste People API
 
-![ThirdsScreen](/images/ThirdsScreen.png)
+![ThirdsScreen](/images/ThirdScreen.png)
 
 ####Tabelul care folosește Calendar API
 

@@ -67,5 +67,5 @@ Ecranul înainte de a se face autentificarea prin Google:
 Această eroare a apărut datorită faptului că nu am autorizat domeniul de AWS, astfel neputând ca API-ul să comunice cu serverul. După ce a fost realizată autorizarea, a fost necesar să șterg cache & cookies, ca, mai apoi, să funcționeze API-ul. 
  
 Referințe:
-1) [Developers Google]	(https://developers.google.com/)
-2) [StackOverflow]	(https://stackoverflow.com/)
+1) [Developers Google](https://developers.google.com/)
+2) [StackOverflow](https://stackoverflow.com/)

@@ -85,20 +85,20 @@ body {
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+      var SCOPES = "https://www.googleapis.com/auth/calendar";
 
 
     // Second API
      // Client ID and API key from the Developer Console
       var CLIENT_ID1 = '392338611851-069rdkebjo635ca181ufr881pvcpmh2h.apps.googleusercontent.com';
-      var API_KEY1 = 'AIzaSyBbfG-7sBWMkexCFVB3v42wsav0TFvNSPU';
+      var API_KEY1 = 'AIzaSyDvBFEdc8CFMrrtExzjWlaxsr_0ShhdGFM';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS1 = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES1 = "https://www.googleapis.com/auth/contacts.readonly";
+      var SCOPES1 = "https://www.googleapis.com/auth/contacts";
     //End Second API
 
       var authorizeButton = document.getElementById('authorize_button');
@@ -204,6 +204,14 @@ body {
        *
        * @param {string} message Text to be placed in pre element.
        */
+       
+      function startest(){
+        handleClientLoad1();
+        handleClientLoad();
+      }
+      
+       
+       
       function appendPre(message) {
         var pre = document.getElementById('content');
         var textContent = document.createTextNode(message + '\n');
@@ -227,9 +235,7 @@ body {
         }).then(function(response) {
           console.log(response);
           var events = response.result.items;
-          
-          
-          if (events.length > 0) {
+           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
               var when = event.start.dateTime;
@@ -248,11 +254,6 @@ body {
           }
         });
       }
-      function startest(){
-        handleClientLoad1();
-        handleClientLoad();
-      }
-      
       function listConnectionNames() {
         gapi.client.people.people.connections.list({
            'resourceName': 'people/me',

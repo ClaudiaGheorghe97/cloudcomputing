@@ -1,23 +1,22 @@
 {
   "name": "environment",
   "version": "1.0.0",
-  "description": "___        ______     ____ _                 _  ___           / \\ \\      / / ___|   / ___| | ___  _   _  __| |/ _ \\         / _ \\ \\ /\\ / /\\___ \\  | |   | |/ _ \\| | | |/ _` | (_) |       / ___ \\ V  V /  ___) | | |___| | (_) | |_| | (_| |\\__, |      /_/   \\_\\_/\\_/  |____/   \\____|_|\\___/ \\__,_|\\__,_|  /_/   -----------------------------------------------------------------",
+  "description": "Acest proiect are ca scop prezentarea informațiilor dobândite în cadrul cursului de Cloud Computing. Astfel, am implementat prin intermediul API-urilor furnizate de Google un calendar și o listă de contacte.",
   "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "mysql2": "^2.1.0",
-    "sequelize": "^5.21.7"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ClaudiaGheorghe97/cloudcomputing.git"
   },
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ClaudiaGheorghe97/cloudcomputing/issues"
   },

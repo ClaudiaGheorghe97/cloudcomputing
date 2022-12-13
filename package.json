@@ -4,7 +4,7 @@
   "description": "Acest proiect are ca scop prezentarea informațiilor dobândite în cadrul cursului de Cloud Computing. Astfel, am implementat prin intermediul API-urilor furnizate de Google un calendar și o listă de contacte.",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   },
   "devDependencies": {},
   "scripts": {
